@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caffeine Blend</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Caffeine Blend</h1>
+
+    <!-- نموذج لإدخال عدد المشروبات ومستويات الكافيين -->
+    <form method="POST" action="/q3">
+        <label for="drinks_count">Enter the number of drinks:</label>
+        <input type="number" id="drinks_count" name="drinks_count" min="1" required>
+
+        <!-- إدخال نسبة الكافيين لكل مشروب -->
+        <div id="caffeine_levels_container"></div>
+
+        <button type="button" onclick="addCaffeineInputs()">Add Caffeine Levels</button>
+        <button type="submit">Calculate Average Caffeine</button>
+    </form>
+
+    <!-- عرض النتيجة -->
+    {% if result is not none %}
+        <h2>Average Caffeine Percentage = {{ result|round(2) }}%</h2>
+    {% endif %}
+
+    <!-- JavaScript لتوليد حقول الإدخال ديناميكيًا لكل مشروب -->
+    <script>
+        function addCaffeineInputs() {
+            const drinkCount = document.getElementById("drinks_count").value;
+            const container = document.getElementById("caffeine_levels_container");
+            container.innerHTML = ""; // إعادة تعيين الحقول
+
+            for (let i = 0; i < drinkCount; i++) {
+                const label = document.createElement("label");
+                label.textContent = `Caffeine percentage of drink ${i + 1}: `;
+
+                const input = document.createElement("input");
+                input.type = "number";
+                input.name = "caffeine_levels";
+                input.min = "0";
+                input.max = "100";
+                input.required = true;
+
+                container.appendChild(label);
+                container.appendChild(input);
+                container.appendChild(document.createElement("br"));
+            }
+        }
+    </script>
+</body>
+</html>

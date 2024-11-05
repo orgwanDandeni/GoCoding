@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Taibah Survival Duo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>The Ultimate Taibah Survival Duo</h1>
+    <form method="post">
+        <label for="n">Total number of courses (n):</label>
+        <input type="number" id="n" name="n" min="1" max="100" required><br><br>
+        
+        <label for="p">Majed's courses count (p):</label>
+        <input type="number" id="p" name="p" min="0" required><br>
+        <label for="majeds_courses">Courses Majed can pass (separate with spaces):</label>
+        <input type="text" id="majeds_courses" name="majeds_courses" placeholder="e.g., 1 2 3"><br><br>
+        
+        <label for="q">Fahd's courses count (q):</label>
+        <input type="number" id="q" name="q" min="0" required><br>
+        <label for="fahds_courses">Courses Fahd can pass (separate with spaces):</label>
+        <input type="text" id="fahds_courses" name="fahds_courses" placeholder="e.g., 2 4 5"><br><br>
+        
+        <button type="submit">Check if they can pass all courses</button>
+    </form>
+
+    {% if result is not none %}
+        <h2>{{ result }}</h2>
+    {% endif %}
+</body>
+</html>

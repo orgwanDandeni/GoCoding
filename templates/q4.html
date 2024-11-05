@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Dish</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Perfect Dish</h1>
+    <form method="POST" action="/q4">
+        <label for="test_cases_count">Cases:</label>
+        <input type="number" id="test_cases_count" name="test_cases_count" min="1" required>
+
+        <div id="cases_container">
+            <!-- ستتم إضافة حقول الإدخال هنا بواسطة JavaScript -->
+        </div>
+
+        <button type="submit">Check Analyze</button>
+    </form>
+
+    {% if result is not none %}
+    <h2>Result:</h2>
+    <p>{{ result }}</p>
+    {% endif %}
+
+    <script>
+        const testCasesInput = document.getElementById('test_cases_count');
+        const casesContainer = document.getElementById('cases_container');
+
+        testCasesInput.addEventListener('input', function() {
+            casesContainer.innerHTML = ''; // تنظيف الحاوية
+            const testCasesCount = parseInt(testCasesInput.value);
+
+            for (let i = 0; i < testCasesCount; i++) {
+                const caseDiv = document.createElement('div');
+                caseDiv.innerHTML = `
+                    <label>الحالة ${i + 1}:</label>
+                    <input type="number" name="a${i}" placeholder="a" required>
+                    <input type="number" name="b${i}" placeholder="b" required>
+                    <input type="number" name="c${i}" placeholder="c" required>
+                    <br>
+                `;
+                casesContainer.appendChild(caseDiv);
+            }
+        });
+    </script>
+</body>
+</html>

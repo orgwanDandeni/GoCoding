@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Layan's Snack Hack</title>
+</head>
+<body>
+    <h1>Check if the Snack Weight can be Split</h1>
+    
+    <form method="POST">
+        <label for="weight">Enter the weight of the snack:</label>
+        <input type="number" name="weight" id="weight" required>
+        <button type="submit">Check</button>
+    </form>
+
+    {% if result %}
+        <h2>Result: {{ result }}</h2>
+    {% endif %}
+</body>
+</html>
