@@ -2,8 +2,6 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# تعريف المسارات السابقة
-
 @app.route('/q1', methods=['GET', 'POST'])
 def q1():
     result = None
@@ -94,7 +92,6 @@ def q7():
         n = int(request.form['n'])
         k = int(request.form['k'])
 
-        # حساب الـ k-th عدد غير القابل للقسمة على n
         not_divisible_count = (k - 1) + (k - 1) // (n - 1)
         kth_number = not_divisible_count + 1 if (k + not_divisible_count) % n != 0 else not_divisible_count + 2
 
